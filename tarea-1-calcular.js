@@ -1,18 +1,20 @@
 function calcularMenorEdad(valores){
     let menorEdad = Infinity;
-    for(let edadActual of valores){
-        if (Number(edadActual.value) < menorEdad){
-            menorEdad = Number(edadActual.value);
+
+    for (let edadActual of valores){
+        if (Number(edadActual) < menorEdad){
+            menorEdad = Number(edadActual);
         }
     }
+
     return menorEdad;
 }
 
 function calcularMayorEdad(valores){
     let mayorEdad = -Infinity;
     for (let edadActual of valores){
-        if(Number(edadActual.value) > mayorEdad){
-            mayorEdad = Number(edadActual.value);
+        if(Number(edadActual) > mayorEdad){
+            mayorEdad = Number(edadActual);
         }
     }
     
@@ -21,11 +23,11 @@ function calcularMayorEdad(valores){
 
 function calcularEdadPromedio(valores){
     let promedio = 0;
-    if (valores.length = 0){
+    if (valores.length == 0){
         return 0;
     } else {
         for (let edadActual of valores){
-            promedio += Number(edadActual.value);
+            promedio += Number(edadActual);
         }
 
         promedio = promedio / valores.length;
@@ -36,7 +38,13 @@ function calcularEdadPromedio(valores){
 
 
 calcular.onclick = function(){
-    const edades = document.querySelectorAll('.edad-familiar');
+    const $edades = document.querySelectorAll('.edad-familiar');
+    const edades = [];
+
+    $edades.forEach(edad => {
+        edades.push(edad.value);
+    });
+
     const texto_Menor_Edad = document.querySelector('#menor-edad');
     const texto_Mayor_Edad = document.querySelector('#mayor-edad');
     const texto_Edad_Promedio = document.querySelector('#edad-promedio');
